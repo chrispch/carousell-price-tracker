@@ -41,38 +41,39 @@ def scrap():
 
 # generate additional smart labels based on common words in listing names
 def generate_labels():
-    potential_labels = {}
+    word_frequency = {}
     # collect all names in existing labels
     words = []
-    for k, lb in labels.items():
-        for ls in lb:
-            for w in ls["name"].split(" "):
-                words.append(w)
+    for ls in data:
+        for w in ls["name"].split(" "):
+            words.append(w)
     #print(words)
     for w1 in words:
-        potential_labels[w1] = 1
+        word_frequency[w1] = 1
         for w2 in words:
             if w1 == w2:
-                potential_labels[w1] += 1
+                word_frequency[w1] += 1
                 words.remove(w1)
 
     max_return = 3  # number of labels to return
     for i in range(max_return):
-        top_label = max(potential_labels, key=potential_labels.get)
-        potential_labels.pop(top_label)
-        labels
-        for k, lb in labels.items():
-            for ls in lb:
-                if top_label in ls["name"]:
-                    #labels[top_label].append(ls)
-                    print(top_label)
+        top_word = max(word_frequency, key=word_frequency.get)  # returns highest frequency word as label
+        word_frequency.pop(top_word)
+        new_label = top_word.lower()
+        if new_label not in labels:
+            labels.append(new_label)
+
 
 def search_database(label):
+    for ls in data:
+        if label in ls["name"].lower():
+            print(ls)
 
 
 scrap()
 generate_labels()
-
+search_database("headphones")
+print(labels)
 
 # df = pandas.DataFrame(data)
 # df.to_csv("output.csv")
