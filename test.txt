@@ -1,1 +1,18 @@
-Hi there
+GitHub commands
+
+git status
+git add . 
+git commit -m "Your message here"
+git push
+git pull
+
+git branch # gets current branch
+git branch newbranchname # creates new branch from current branch
+git checkout newbranchname # changes working branch
+
+git checkout master
+git pull # get latest version of master
+git checkout newbranchname
+git merge master
+
+esc + :wq if you commit without adding a message
